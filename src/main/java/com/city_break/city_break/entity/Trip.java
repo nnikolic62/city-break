@@ -1,5 +1,6 @@
 package com.city_break.city_break.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,15 +21,16 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "startDate")
+    @Column(name = "start_date")
     private Date startDate;
-    @Column(name = "endDate")
+    @Column(name = "end_date")
     private Date endDate;
     @Column(name = "rating")
     private int rating;
-    @Column(name = "personalNotes")
+    @Column(name = "personal_notes")
     private String personalNotes;
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne()
     @JoinColumn(name = "city_id")
+    @JsonBackReference
     private City city;
 }

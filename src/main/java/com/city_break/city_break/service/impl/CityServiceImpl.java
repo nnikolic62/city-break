@@ -21,4 +21,28 @@ public class CityServiceImpl implements CityService {
     public List<City> getAllCities() {
         return cityRepository.findAll();
     }
+
+    @Override
+    public City getCity(Long id) {
+        City foundCity = cityRepository.findById(id).orElseThrow(() -> new RuntimeException());
+
+        return foundCity;
+    }
+
+    @Override
+    public City addCity(City city) {
+        return cityRepository.save(city);
+    }
+
+    @Override
+    public City editCity(City city) {
+        return cityRepository.save(city);
+    }
+
+    @Override
+    public void deleteCity(Long id) {
+        City city = cityRepository.findById(id).orElseThrow(() -> new RuntimeException());
+
+        cityRepository.delete(city);
+    }
 }

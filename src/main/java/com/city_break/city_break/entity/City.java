@@ -1,5 +1,6 @@
 package com.city_break.city_break.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class City {
     private String country;
     @Column(name = "details")
     private String details;
-    @OneToMany(mappedBy = "city")
+    @OneToMany(mappedBy = "city", cascade = {CascadeType.PERSIST})
+    @JsonManagedReference
     private List<Trip> trips;
 }
